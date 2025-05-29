@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Todo.module.css";
-import { PRIORITIES, PRIORITY_DEFAULT } from "../const/data.js";
+import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/data.js";
 
 const TodoForm = ({ onCreate }) => {
   const [showField, setShowField] = useState(false);
