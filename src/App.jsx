@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import TodoForm from "./components/TodoForm/TodoForm";
 import styles from "./App.module.css";
+import { TODOS_DEFAULT } from "./components/const/data.js";
+import TodoItem from "./components/TodoItem/TodoItem";
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [todoList, setTodoList] = useState([...TODOS_DEFAULT]);
 
   const handleCreate = (newTodo) => {
     setTodos((prevTodos) => [
@@ -21,7 +24,9 @@ function App() {
 
       <div className={styles.AppContainer}>
         <TodoForm onCreate={handleCreate} />
-        {JSON.stringify(todos)}
+        {todoList.map((item) => (
+          <TodoItem key={item.id} item={item} />
+        ))}
       </div>
     </div>
   );

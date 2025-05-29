@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Todo.module.css";
-
-const periorities = [
-  { value: "none", label: "None" },
-  { value: "low", label: "Low" },
-  { value: "medium", label: "Medium" },
-  { value: "high", label: "High" },
-];
+import { PRIORITIES, PRIORITY_DEFAULT } from "../const/data.js";
 
 const TodoForm = ({ onCreate }) => {
   const [showField, setShowField] = useState(false);
@@ -69,8 +63,12 @@ const TodoForm = ({ onCreate }) => {
 
                 <div className={styles.FormField}>
                   <label htmlFor="priority">Priority</label>
-                  <select defaultValue="none" id="priority" name="priority">
-                    {periorities.map((priority) => (
+                  <select
+                    defaultValue={PRIORITY_DEFAULT}
+                    id="priority"
+                    name="priority"
+                  >
+                    {PRIORITIES.map((priority) => (
                       <option key={priority.value} value={priority.value}>
                         {priority.label}
                       </option>
