@@ -1,19 +1,36 @@
 import React from "react";
 import styles from "./Todo.module.css";
 
-export const periorities = [
+const periorities = [
   { value: "none", label: "None" },
   { value: "low", label: "Low" },
   { value: "medium", label: "Medium" },
   { value: "high", label: "High" },
 ];
 
-const TodoForm = () => {
+const TodoForm = ({ onCreate }) => {
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const { elements } = event.target;
+    if (elements.name.value === "") return;
+
+    onCreate({
+      name: elements.name.value,
+      description: elements.description.value,
+      deadline: elements.deadline.value,
+      priority: elements.priority.value,
+      completed: false,
+    });
+
+    event.target.reset();
+  }
+
   return (
     <section>
       <h3 className={styles.Title}>New To-Do</h3>
 
-      <form className={styles.Form}>
+      <form className={styles.Form} onSubmit={handleSubmit}>
         <div className={styles.FormFields}>
           <div className={styles.FormField}>
             <input
