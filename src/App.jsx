@@ -5,14 +5,21 @@ import { TODOS_DEFAULT } from "./constants/data.js";
 import TodoList from "./components/TodoList/TodoList.jsx";
 
 function App() {
-  const [newTodos, setNewTodos] = useState([]);
-  const [todoList, setTodoList] = useState(TODOS_DEFAULT);
+  const [todos, setTodos] = useState(TODOS_DEFAULT);
 
   const handleCreate = (newTodo) => {
-    setNewTodos((prevTodos) => [
+    setTodos((prevTodos) => [
       ...prevTodos,
       { id: `${prevTodos.length + 1}`, ...newTodo },
     ]);
+  };
+
+  const handleUpdate = (id, newTodos) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, ...newTodos } : todo
+      )
+    );
   };
 
   return (
@@ -24,7 +31,7 @@ function App() {
 
       <div className={styles.AppContainer}>
         <TodoForm onCreate={handleCreate} />
-        <TodoList todoList={todoList} />
+        <TodoList todoList={todos} onUpdate={handleUpdate} />
       </div>
     </div>
   );
