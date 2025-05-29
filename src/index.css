@@ -39,3 +39,9 @@ input[type="reset"]:hover,
 button:hover {
   background: lightgray;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

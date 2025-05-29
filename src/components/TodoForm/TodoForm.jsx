@@ -68,9 +68,9 @@ const TodoForm = ({ onCreate }) => {
                     id="priority"
                     name="priority"
                   >
-                    {PRIORITIES.map((priority) => (
-                      <option key={priority.value} value={priority.value}>
-                        {priority.label}
+                    {Object.entries(PRIORITIES).map(([key, { label }]) => (
+                      <option key={key} value={key}>
+                        {label}
                       </option>
                     ))}
                   </select>

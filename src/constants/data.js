@@ -1,9 +1,9 @@
-export const PRIORITIES = [
-  { value: "none", label: "None", color: "" },
-  { value: "low", label: "Low", color: "Teal" },
-  { value: "medium", label: "Medium", color: "Gold" },
-  { value: "high", label: "High", color: "Salmon" },
-];
+export const PRIORITIES = {
+  none: { label: "None", color: "" },
+  low: { label: "Low", color: "Teal" },
+  medium: { label: "Medium", color: "Gold" },
+  high: { label: "High", color: "Salmon" },
+};
 
 export const PRIORITY_DEFAULT = "none";
 
