@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Todo.module.css";
 
 const periorities = [
@@ -9,7 +9,9 @@ const periorities = [
 ];
 
 const TodoForm = ({ onCreate }) => {
-  function handleSubmit(event) {
+  const [showField, setShowField] = useState(false);
+
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const { elements } = event.target;
@@ -17,18 +19,25 @@ const TodoForm = ({ onCreate }) => {
 
     onCreate({
       name: elements.name.value,
-      description: elements.description.value,
-      deadline: elements.deadline.value,
-      priority: elements.priority.value,
+      description: elements.description?.value ?? "",
+      deadline: elements.deadline?.value ?? "",
+      priority: elements.priority?.value ?? "",
       completed: false,
     });
 
     event.target.reset();
-  }
+  };
+
+  const handleShowField = () => setShowField(!showField);
 
   return (
     <section>
-      <h3 className={styles.Title}>New To-Do</h3>
+      <h3 className={styles.Title}>
+        New To-Do
+        <button onClick={handleShowField}>
+          {showField ? "Hide" : "Show"} All Field
+        </button>
+      </h3>
 
       <form className={styles.Form} onSubmit={handleSubmit}>
         <div className={styles.FormFields}>
@@ -41,37 +50,36 @@ const TodoForm = ({ onCreate }) => {
               autoComplete="off"
             />
           </div>
+          {showField && (
+            <>
+              {" "}
+              <div className={styles.FormField}>
+                <textarea
+                  aria-label="Description"
+                  placeholder="Description"
+                  name="description"
+                  rows="3"
+                />
+              </div>
+              <div className={styles.FormGroup}>
+                <div className={styles.FormField}>
+                  <label htmlFor="deadline">Deadline</label>
+                  <input type="date" id="deadline" name="deadline" />
+                </div>
 
-          <div className={styles.FormField}>
-            <textarea
-              aria-label="Description"
-              placeholder="Description"
-              name="description"
-              rows="3"
-            />
-          </div>
-
-          <div className={styles.FormGroup}>
-            <div className={styles.FormField}>
-              <label htmlFor="deadline">Deadline</label>
-              <input type="date" id="deadline" name="deadline" />
-            </div>
-
-            <div className={styles.FormField}>
-              <label htmlFor="priority">Priority</label>
-              <select defaultValue="none" id="priority" name="priority">
-                {periorities.map((priority) => (
-                  <option key={priority.value} value={priority.value}>
-                    {priority.label}
-                  </option>
-                ))}
-                {/* <option value="none">None</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option> */}
-              </select>
-            </div>
-          </div>
+                <div className={styles.FormField}>
+                  <label htmlFor="priority">Priority</label>
+                  <select defaultValue="none" id="priority" name="priority">
+                    {periorities.map((priority) => (
+                      <option key={priority.value} value={priority.value}>
+                        {priority.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         <input type="submit" value="Add" />

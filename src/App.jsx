@@ -5,12 +5,12 @@ import styles from "./App.module.css";
 function App() {
   const [todos, setTodos] = useState([]);
 
-  function handleCreate(newTodo) {
+  const handleCreate = (newTodo) => {
     setTodos((prevTodos) => [
       ...prevTodos,
       { id: `${prevTodos.length + 1}`, ...newTodo },
     ]);
-  }
+  };
 
   return (
     <div className={styles.App}>
