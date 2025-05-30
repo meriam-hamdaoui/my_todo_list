@@ -1,8 +1,9 @@
 import React from "react";
 import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/data.js";
 import styles from "../TodoItem/TodoItem.module.css";
+import { handleCheckboxChange } from "../../handler/Handler.js";
 
-const ItemTemplate = ({ todo, handleCheckboxChange, setIsEditing }) => {
+const ItemTemplate = ({ todo, setIsEditing, onUpdate }) => {
   return (
     <div className={styles.Content}>
       <input
@@ -10,7 +11,7 @@ const ItemTemplate = ({ todo, handleCheckboxChange, setIsEditing }) => {
         name="completed"
         checked={todo.completed}
         className={styles.Status}
-        onChange={(e) => handleCheckboxChange(e)}
+        onChange={(e) => handleCheckboxChange(e, todo, onUpdate)}
       />
       <div className={styles.Info}>
         <span>{todo.name}</span>

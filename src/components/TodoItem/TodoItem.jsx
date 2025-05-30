@@ -8,45 +8,20 @@ import ItemTemplate from "../todoTemplates/ItemTemplate.jsx";
 const TodoItem = ({ todo, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleCheckboxChange = (e) => {
-    const updatedTodo = {
-      ...todo,
-      completed: e.target.checked,
-    };
-
-    onUpdate(todo.id, updatedTodo);
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    const { elements } = e.target;
-    const updatedTodo = {
-      ...todo,
-      name: elements.name.value,
-      description: elements.description.value,
-      deadline: elements.deadline.value,
-      priority: elements.priority.value,
-      completed: todo.completed, // Keep the current completed status
-    };
-
-    onUpdate(todo.id, updatedTodo);
-    setIsEditing(false);
-  };
-
   return (
     <li className={styles.TodoListItem} data-completed={todo.completed}>
       {isEditing ? (
         <EditTemplate
-          handleFormSubmit={handleFormSubmit}
           setIsEditing={setIsEditing}
+          todo={todo}
+          onUpdate={onUpdate}
         >
           <TodoFormFields todo={todo} />
         </EditTemplate>
       ) : (
         <ItemTemplate
           todo={todo}
-          handleCheckboxChange={handleCheckboxChange}
+          onUpdate={onUpdate}
           setIsEditing={setIsEditing}
         />
       )}

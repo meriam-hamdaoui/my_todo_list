@@ -3,25 +3,10 @@ import styles from "./Todo.module.css";
 import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/data.js";
 import TodoFormFields from "../TodoFormFields/TodoFormFields.jsx";
 
+import { handleSubmit } from "./../../handler/Handler";
+
 const TodoForm = ({ onCreate }) => {
   const [showField, setShowField] = useState(false);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const { elements } = event.target;
-    if (elements.name.value === "") return;
-
-    onCreate({
-      name: elements.name.value,
-      description: elements.description?.value ?? "",
-      deadline: elements.deadline?.value ?? "",
-      priority: elements.priority?.value ?? "",
-      completed: false,
-    });
-
-    event.target.reset();
-  };
 
   const handleShowField = () => setShowField(!showField);
 
@@ -34,7 +19,10 @@ const TodoForm = ({ onCreate }) => {
         </button>
       </h3>
 
-      <form className={styles.Form} onSubmit={handleSubmit}>
+      <form
+        className={styles.Form}
+        onSubmit={(e) => handleSubmit(e, onCreate, handleShowField)}
+      >
         <TodoFormFields showField={showField} />
         <input type="submit" value="Add" />
       </form>
