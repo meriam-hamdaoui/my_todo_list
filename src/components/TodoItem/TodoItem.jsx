@@ -5,7 +5,7 @@ import TodoFormFields from "../TodoFormFields/TodoFormFields.jsx";
 import EditTemplate from "../todoTemplates/EditTemplate.jsx";
 import ItemTemplate from "../todoTemplates/ItemTemplate.jsx";
 
-const TodoItem = ({ todo, onUpdate }) => {
+const TodoItem = ({ todo, onUpdate, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
@@ -22,6 +22,7 @@ const TodoItem = ({ todo, onUpdate }) => {
         <ItemTemplate
           todo={todo}
           onUpdate={onUpdate}
+          onDelete={onDelete}
           setIsEditing={setIsEditing}
         />
       )}

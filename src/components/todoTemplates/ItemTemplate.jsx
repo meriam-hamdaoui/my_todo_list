@@ -3,7 +3,7 @@ import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/data.js";
 import styles from "../TodoItem/TodoItem.module.css";
 import { handleCheckboxChange } from "../../handler/Handler.js";
 
-const ItemTemplate = ({ todo, setIsEditing, onUpdate }) => {
+const ItemTemplate = ({ todo, setIsEditing, onUpdate, onDelete }) => {
   return (
     <div className={styles.Content}>
       <input
@@ -35,6 +35,7 @@ const ItemTemplate = ({ todo, setIsEditing, onUpdate }) => {
       </div>
       <div className={styles.Controls}>
         <button onClick={() => setIsEditing(true)}>📝</button>
+        <button onClick={() => onDelete(todo.id)}>🗑️</button>
       </div>
     </div>
   );
