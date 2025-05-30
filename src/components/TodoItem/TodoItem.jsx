@@ -15,6 +15,23 @@ const TodoItem = ({ todo, onUpdate }) => {
     onUpdate(todo.id, updatedTodo);
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const { elements } = e.target;
+    const updatedTodo = {
+      ...todo,
+      name: elements.name.value,
+      description: elements.description.value,
+      deadline: elements.deadline.value,
+      priority: elements.priority.value,
+      completed: todo.completed, // Keep the current completed status
+    };
+
+    onUpdate(todo.id, updatedTodo);
+    setIsEditing(false);
+  };
+
   const todoItemTemplate = (
     <div className={styles.Content}>
       <input
@@ -51,7 +68,11 @@ const TodoItem = ({ todo, onUpdate }) => {
   );
 
   const editingTemplate = (
-    <form className={styles.Content} onReset={() => setIsEditing(false)}>
+    <form
+      className={styles.Content}
+      onReset={() => setIsEditing(false)}
+      onSubmit={handleFormSubmit}
+    >
       <TodoFormFields todo={todo} />
 
       <div className={styles.Controls}>
