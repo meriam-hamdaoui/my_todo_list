@@ -27,6 +27,10 @@ function App() {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
+  const filterTodos = () => {
+    //  const { completed, priority } = filters;
+  };
+
   return (
     <div className={styles.App}>
       <header className={styles.Header}>
@@ -38,7 +42,7 @@ function App() {
         <TodoForm onCreate={handleCreate} />
         <TodoFilters />
         <TodoList
-          todoList={todos}
+          todoList={todos.filter(filterTodos)}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
         />
