@@ -20,14 +20,16 @@ const TodoFilters = () => {
           <select
             id="completed"
             name="completed"
-            value={completed}
+            defaultValue={completed}
             onChange={(e) => setCompleted(e.target.value)}
           >
-            {Object.entries(COMPLETED_FILTERS).map(([key, { label }]) => (
-              <option key={key} value={key}>
-                {label}
-              </option>
-            ))}
+            {Object.entries(COMPLETED_FILTERS).map(
+              ([key, { label, value }]) => (
+                <option key={key} value={value}>
+                  {label}
+                </option>
+              )
+            )}
           </select>
         </div>
 
@@ -37,11 +39,11 @@ const TodoFilters = () => {
           <select
             id="priority"
             name="priority"
-            value={priority}
+            defaultValue={priority}
             onChange={(e) => setPriority(e.target.value)}
           >
-            {Object.entries(PRIORITY_FILTERS).map(([key, { label }]) => (
-              <option key={key} value={key}>
+            {Object.entries(PRIORITY_FILTERS).map(([key, { label, value }]) => (
+              <option key={key} value={value}>
                 {label}
               </option>
             ))}
