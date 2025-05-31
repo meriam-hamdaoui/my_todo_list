@@ -7,6 +7,7 @@ import TodoFilters from "./components/TodoFilters/TodoFilters.jsx";
 
 function App() {
   const [todos, setTodos] = useState(TODOS_DEFAULT);
+  const [filters, setFilters] = useState({});
 
   const handleCreate = (newTodo) => {
     setTodos((prevTodos) => [
@@ -27,8 +28,13 @@ function App() {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
-  const filterTodos = () => {
-    //  const { completed, priority } = filters;
+  const filterTodos = (todo) => {
+    const { completed, priority } = filters;
+
+    return (
+      (completed === "" || todo.completed === completed) &&
+      (priority === "" || todo.priority === priority)
+    );
   };
 
   return (
@@ -40,7 +46,7 @@ function App() {
 
       <div className={styles.AppContainer}>
         <TodoForm onCreate={handleCreate} />
-        <TodoFilters />
+        <TodoFilters onFilter={setFilters} />
         <TodoList
           todoList={todos.filter(filterTodos)}
           onUpdate={handleUpdate}
