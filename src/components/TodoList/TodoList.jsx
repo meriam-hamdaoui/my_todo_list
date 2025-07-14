@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./TodoList.module.css"; // Assuming you have a CSS file for styling
 import TodoItem from "../TodoItem/TodoItem";
 

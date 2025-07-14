@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./TodoItem.module.css"; // Assuming you have a CSS file for styling
 import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/data";
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TodoForm from "./components/TodoForm/TodoForm";
 import styles from "./App.module.css";
 import { TODOS_DEFAULT } from "./constants/data.js";
