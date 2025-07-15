@@ -19,10 +19,26 @@ const TodoItem = ({ todo, onUpdate }) => {
     onUpdate(todo.id, updatedTodo);
   };
 
+  const handleEdit = (e) => {
+    e.preventDefault();
+
+    const { elements } = e.target;
+    // if (elements.name.value === "") return;
+
+    onUpdate(todo.id, {
+      name: elements.name.value,
+      description: elements.description.value,
+      deadline: elements.deadline.value ?? e.target.value,
+      priority: elements.priority.value,
+      completed: todo.completed ?? e.target.value,
+    });
+    setIsEditing(false);
+  };
+
   return (
     <li className={styles.TodoListItem} data-completed={todo.completed}>
       {isEditing ? (
-        <EditView todo={todo} onCancel={handleReset} />
+        <EditView todo={todo} onCancel={handleReset} onSave={handleEdit} />
       ) : (
         <ItemView
           todo={todo}
