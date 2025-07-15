@@ -1,7 +1,7 @@
 import styles from "./TodoItem.module.css"; // Assuming you have a CSS file for styling
 import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/data";
 import { MdOutlineEditNote, MdOutlineDelete } from "react-icons/md";
-export default function ItemView({ todo, onChangeBox, onClickEdit }) {
+export default function ItemView({ todo, onChangeBox, onClickEdit, onDelete }) {
   return (
     <div className={styles.Content}>
       <input
@@ -38,7 +38,7 @@ export default function ItemView({ todo, onChangeBox, onClickEdit }) {
           </button>
         </div>
         <div className={styles.Wrapper}>
-          <button className={styles.Btn}>
+          <button className={styles.Btn} onClick={() => onDelete(todo.id)}>
             <MdOutlineDelete className={styles.Icon} />
           </button>
         </div>

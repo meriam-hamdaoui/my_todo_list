@@ -22,6 +22,9 @@ function App() {
     );
   };
 
+  const handleDelete = (id) =>
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
+
   return (
     <div className={styles.App}>
       <header className={styles.Header}>
@@ -31,7 +34,11 @@ function App() {
 
       <div className={styles.AppContainer}>
         <TodoForm onCreate={handleCreate} />
-        <TodoList todoList={todos} onUpdate={handleUpdate} />
+        <TodoList
+          todoList={todos}
+          onUpdate={handleUpdate}
+          onDelete={handleDelete}
+        />
       </div>
     </div>
   );

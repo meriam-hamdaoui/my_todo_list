@@ -3,7 +3,7 @@ import styles from "./TodoItem.module.css"; // Assuming you have a CSS file for 
 import ItemView from "./ItemView";
 import EditView from "./EditView";
 
-const TodoItem = ({ todo, onUpdate }) => {
+const TodoItem = ({ todo, onUpdate, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleIsEditing = () => setIsEditing(true);
@@ -44,6 +44,7 @@ const TodoItem = ({ todo, onUpdate }) => {
           todo={todo}
           onChangeBox={handleCheckboxChange}
           onClickEdit={handleIsEditing}
+          onDelete={onDelete}
         />
       )}
     </li>
