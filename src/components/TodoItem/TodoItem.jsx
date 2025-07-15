@@ -7,6 +7,7 @@ const TodoItem = ({ todo, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleIsEditing = () => setIsEditing(true);
+  const handleReset = () => setIsEditing(false);
 
   const handleCheckboxChange = (e) => {
     const updatedTodo = {
@@ -21,7 +22,7 @@ const TodoItem = ({ todo, onUpdate }) => {
   return (
     <li className={styles.TodoListItem} data-completed={todo.completed}>
       {isEditing ? (
-        <EditView todo={todo} />
+        <EditView todo={todo} onCancel={handleReset} />
       ) : (
         <ItemView
           todo={todo}

@@ -1,6 +1,6 @@
 import styles from "./TodoItem.module.css"; // Assuming you have a CSS file for styling
 import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/data";
-import { MdEditDocument } from "react-icons/md";
+import { MdOutlineEditNote, MdOutlineDelete } from "react-icons/md";
 export default function ItemView({ todo, onChangeBox, onClickEdit }) {
   return (
     <div className={styles.Content}>
@@ -32,9 +32,16 @@ export default function ItemView({ todo, onChangeBox, onClickEdit }) {
         </div>
       </div>
       <div className={styles.Controls}>
-        <button onClick={onClickEdit}>
-          <MdEditDocument />{" "}
-        </button>
+        <div className={styles.Wrapper}>
+          <button className={styles.Btn} onClick={onClickEdit}>
+            <MdOutlineEditNote className={styles.Icon} />
+          </button>
+        </div>
+        <div className={styles.Wrapper}>
+          <button className={styles.Btn}>
+            <MdOutlineDelete className={styles.Icon} />
+          </button>
+        </div>
       </div>
     </div>
   );

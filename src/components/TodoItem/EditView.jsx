@@ -2,21 +2,22 @@ import styles from "./TodoItem.module.css";
 import TodoFormFields from "../TodoFormFields/TodoFormFields";
 import { MdOutlineSave, MdOutlineCancel } from "react-icons/md";
 
-export default function EditView({ todo }) {
+export default function EditView({ todo, onSubmit, onCancel }) {
   return (
-    <form>
-      <div className={styles.Content}>
-        <TodoFormFields todo={todo} />
+    <form className={styles.Content} onSubmit={onSubmit} onReset={onCancel}>
+      <TodoFormFields todo={todo} />
 
-        <div className={styles.Controls}>
-          <div className={styles.Wrapper}>
+      <div className={styles.Controls}>
+        <div className={styles.Wrapper}>
+          <button type="submit" className={styles.Btn}>
             <MdOutlineSave className={styles.Icon} />
-            <input type="submit" className={styles.Input} value="" />
-          </div>
-          <div className={styles.Wrapper}>
+          </button>
+        </div>
+
+        <div className={styles.Wrapper}>
+          <button type="reset" className={styles.Btn}>
             <MdOutlineCancel className={styles.Icon} />
-            <input type="submit" className={styles.Input} value="" />
-          </div>
+          </button>
         </div>
       </div>
     </form>
