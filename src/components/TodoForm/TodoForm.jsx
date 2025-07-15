@@ -18,17 +18,16 @@ const TodoForm = ({ onCreate }) => {
       priority: elements.priority?.value ?? "",
       completed: false,
     });
+    setShowField(!showField);
 
     event.target.reset();
   };
-
-  const handleShowField = () => setShowField(!showField);
 
   return (
     <section>
       <h3 className={styles.Title}>
         New To-Do
-        <button onClick={handleShowField}>
+        <button onClick={() => setShowField(!showField)}>
           {showField ? "Hide" : "Show"} All Field
         </button>
       </h3>
