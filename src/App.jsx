@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TodoForm from "./components/TodoForm/TodoForm";
 import styles from "./App.module.css";
 import { TODOS_DEFAULT } from "./constants/data.js";
@@ -24,18 +24,8 @@ function App() {
     );
   };
 
-  const handleDelete = (id) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
-  };
-
-  const filterTodos = (todo) => {
-    const { completed, priority } = filters;
-
-    return (
-      (completed === "" || todo.completed === completed) &&
-      (priority === "" || todo.priority === priority)
-    );
-  };
+  const handleDelete = (id) =>
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
 
   return (
     <div className={styles.App}>
@@ -46,9 +36,8 @@ function App() {
 
       <div className={styles.AppContainer}>
         <TodoForm onCreate={handleCreate} />
-        <TodoFilters onFilter={setFilters} />
         <TodoList
-          todoList={todos.filter(filterTodos)}
+          todoList={todos}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
         />

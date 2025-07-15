@@ -1,8 +1,6 @@
-import React from "react";
 import { PRIORITIES, PRIORITY_DEFAULT } from "../../constants/data.js";
 import styles from "./TodoFormFields.module.css";
-
-const TodoFormFields = ({ showField = true, todo = {} }) => {
+export default function TodoFormFields({ showField = true, todo = {} }) {
   return (
     <div className={styles.FormFields}>
       <div className={styles.FormField}>
@@ -56,6 +54,4 @@ const TodoFormFields = ({ showField = true, todo = {} }) => {
       )}
     </div>
   );
-};
-
-export default TodoFormFields;
+}
