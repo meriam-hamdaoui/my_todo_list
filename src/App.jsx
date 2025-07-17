@@ -1,11 +1,13 @@
 import { useState } from "react";
 import TodoForm from "./components/TodoForm/TodoForm";
+import TodoList from "./components/TodoList/TodoList.jsx";
+import TodoFilters from "./components/TodoFilters/TodoFilters.jsx";
 import styles from "./App.module.css";
 import { TODOS_DEFAULT } from "./constants/data.js";
-import TodoList from "./components/TodoList/TodoList.jsx";
 
 function App() {
   const [todos, setTodos] = useState(TODOS_DEFAULT);
+  const [filters, setFilters] = useState({});
 
   const handleCreate = (newTodo) => {
     setTodos((prevTodos) => [
@@ -25,6 +27,15 @@ function App() {
   const handleDelete = (id) =>
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
 
+  const handleFilters = (todo) => {
+    const { completed, periority } = filters;
+
+    return (
+      (completed === "" || todo.completed === completed) &&
+      (periority === "" || todo.periority === periority)
+    );
+  };
+
   return (
     <div className={styles.App}>
       <header className={styles.Header}>
@@ -34,8 +45,9 @@ function App() {
 
       <div className={styles.AppContainer}>
         <TodoForm onCreate={handleCreate} />
+        <TodoFilters onFilter={setFilters} />
         <TodoList
-          todoList={todos}
+          todoList={todos.filter(handleFilters)}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
         />

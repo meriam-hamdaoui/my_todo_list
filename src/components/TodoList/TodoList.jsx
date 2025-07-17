@@ -4,7 +4,7 @@ import TodoItem from "../TodoItem/TodoItem";
 const TodoList = ({ todoList, onUpdate, onDelete }) => {
   return (
     <div>
-      <h3 align="center">{todoList.length ? "To-Do's" : "Nothing To Do"}</h3>
+      <h3>{todoList.length ? "To-Do's" : "Nothing To Do"}</h3>
 
       <ul className={styles.TodoList}>
         {todoList.map((todo) => (
