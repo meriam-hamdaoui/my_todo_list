@@ -3,11 +3,9 @@ import TodoForm from "./components/TodoForm/TodoForm";
 import styles from "./App.module.css";
 import { TODOS_DEFAULT } from "./constants/data.js";
 import TodoList from "./components/TodoList/TodoList.jsx";
-import TodoFilters from "./components/TodoFilters/TodoFilters.jsx";
 
 function App() {
   const [todos, setTodos] = useState(TODOS_DEFAULT);
-  const [filters, setFilters] = useState({});
 
   const handleCreate = (newTodo) => {
     setTodos((prevTodos) => [
