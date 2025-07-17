@@ -6,17 +6,17 @@ import {
 } from "../../constants/filters.js";
 
 export default function TodoFilters({ onFilter }) {
-  const [periority, setPeriority] = useState("all");
+  const [priority, setPriority] = useState("all");
   const [completed, setCompleted] = useState("all");
 
   useEffect(() => {
     const filters = {
       completed: COMPLETED_FILTERS[completed].value,
-      periority: PRIORITY_FILTERS[periority].value,
+      priority: PRIORITY_FILTERS[priority].value,
     };
 
     onFilter(filters);
-  }, [completed, periority]);
+  }, [completed, priority]);
 
   return (
     <section>
@@ -36,11 +36,11 @@ export default function TodoFilters({ onFilter }) {
           ))}
         </select>
 
-        <label htmlFor="periority">Periority</label>
+        <label htmlFor="priority">Priority</label>
         <select
-          id="periority"
+          id="priority"
           defaultValue="all"
-          onChange={(e) => setPeriority(e.target.value)}
+          onChange={(e) => setPriority(e.target.value)}
         >
           {Object.entries(PRIORITY_FILTERS).map(([key, { label }]) => (
             <option key={key} value={key}>

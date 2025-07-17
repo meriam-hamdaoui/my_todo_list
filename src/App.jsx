@@ -28,11 +28,11 @@ function App() {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
 
   const handleFilters = (todo) => {
-    const { completed, periority } = filters;
+    const { completed, priority } = filters;
 
     return (
       (completed === "" || todo.completed === completed) &&
-      (periority === "" || todo.periority === periority)
+      (priority === "" || todo.priority === priority)
     );
   };
 
