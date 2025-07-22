@@ -5,7 +5,12 @@ import styles from "./Todo.module.css";
 import { PRIORITY_DEFAULT } from "../../constants/data";
 
 const TodoForm = ({ onCreate }) => {
-  const { register, handleSubmit, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       description: "",
       deadline: "",
@@ -32,7 +37,11 @@ const TodoForm = ({ onCreate }) => {
       </h3>
 
       <form className={styles.Form} onSubmit={handleSubmit(handleCreate)}>
-        <TodoFormFields showField={showField} register={register} />
+        <TodoFormFields
+          showField={showField}
+          register={register}
+          errors={errors}
+        />
 
         <input type="submit" value="Add" />
       </form>

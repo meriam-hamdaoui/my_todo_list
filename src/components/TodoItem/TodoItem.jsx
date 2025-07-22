@@ -7,7 +7,7 @@ import EditView from "./EditView";
 // import { PRIORITY_DEFAULT } from "../../constants/data";
 
 const TodoItem = ({ todo, onUpdate, onDelete }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm({ defaultValues: todo });
   const [isEditing, setIsEditing] = useState(false);
 
   const handleIsEditing = () => setIsEditing(true);
