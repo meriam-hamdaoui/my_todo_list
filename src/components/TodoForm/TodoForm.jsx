@@ -9,7 +9,7 @@ const TodoForm = ({ onCreate }) => {
     event.preventDefault();
 
     const { elements } = event.target;
-    if (elements.name.value === "") return;
+    // if (elements.name.value === "") return;
 
     onCreate({
       name: elements.name.value,

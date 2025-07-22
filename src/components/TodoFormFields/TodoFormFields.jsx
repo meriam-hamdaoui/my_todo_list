@@ -11,6 +11,7 @@ export default function TodoFormFields({ showField = true, todo = {} }) {
           name="name"
           autoComplete="off"
           defaultValue={todo.name}
+          required
         />
       </div>
       {showField && (
@@ -22,6 +23,7 @@ export default function TodoFormFields({ showField = true, todo = {} }) {
               name="description"
               rows="3"
               defaultValue={todo.description}
+              maxLength={200}
             />
           </div>
           <div className={styles.FormGroup}>
@@ -32,6 +34,7 @@ export default function TodoFormFields({ showField = true, todo = {} }) {
                 id="deadline"
                 name="deadline"
                 defaultValue={todo.deadline}
+                max={new Date().toISOString().split("T")[0]}
               />
             </div>
 
