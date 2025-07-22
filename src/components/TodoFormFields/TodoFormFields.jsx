@@ -12,6 +12,7 @@ export default function TodoFormFields({ showField = true, todo = {} }) {
           autoComplete="off"
           defaultValue={todo.name}
           required
+          minLength={3}
         />
       </div>
       {showField && (
@@ -21,7 +22,7 @@ export default function TodoFormFields({ showField = true, todo = {} }) {
               aria-label="Description"
               placeholder="Description"
               name="description"
-              rows="3"
+              rows={3}
               defaultValue={todo.description}
               maxLength={200}
             />
@@ -34,7 +35,7 @@ export default function TodoFormFields({ showField = true, todo = {} }) {
                 id="deadline"
                 name="deadline"
                 defaultValue={todo.deadline}
-                max={new Date().toISOString().split("T")[0]}
+                // max={new Date().toISOString().split("T")[0]}
               />
             </div>
 
