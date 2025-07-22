@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+
 import styles from "./TodoItem.module.css"; // Assuming you have a CSS file for styling
 import ItemView from "./ItemView";
 import EditView from "./EditView";
+// import { PRIORITY_DEFAULT } from "../../constants/data";
 
 const TodoItem = ({ todo, onUpdate, onDelete }) => {
+  const { register, handleSubmit } = useForm();
   const [isEditing, setIsEditing] = useState(false);
 
   const handleIsEditing = () => setIsEditing(true);
@@ -19,26 +23,20 @@ const TodoItem = ({ todo, onUpdate, onDelete }) => {
     onUpdate(todo.id, updatedTodo);
   };
 
-  const handleEdit = (e) => {
-    e.preventDefault();
-
-    const { elements } = e.target;
-    // if (elements.name.value === "") return;
-
-    onUpdate(todo.id, {
-      name: elements.name.value,
-      description: elements.description.value,
-      deadline: elements.deadline.value ?? e.target.value,
-      priority: elements.priority.value,
-      completed: todo.completed ?? e.target.value,
-    });
+  const handleEdit = (data) => {
+    onUpdate(todo.id, data);
     setIsEditing(false);
   };
 
   return (
     <li className={styles.TodoListItem} data-completed={todo.completed}>
       {isEditing ? (
-        <EditView todo={todo} onCancel={handleReset} onSave={handleEdit} />
+        <EditView
+          todo={todo}
+          onCancel={handleReset}
+          onSave={handleSubmit(handleEdit)}
+          register={register}
+        />
       ) : (
         <ItemView
           todo={todo}

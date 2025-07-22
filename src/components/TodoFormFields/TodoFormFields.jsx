@@ -35,9 +35,13 @@ export default function TodoFormFields({
                 type="date"
                 id="deadline"
                 defaultValue={todo.deadline}
-                {...register("deadline", {
-                  min: new Date().toISOString().split("T")[0],
-                })}
+                // to make this work for edit form check the ID
+                {...register(
+                  "deadline",
+                  !todo.id && {
+                    min: new Date().toISOString().split("T")[0],
+                  }
+                )}
               />
             </div>
 
