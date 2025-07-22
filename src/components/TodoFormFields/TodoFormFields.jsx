@@ -15,17 +15,7 @@ export default function TodoFormFields({
           placeholder="Name*"
           autoComplete="off"
           defaultValue={todo.name}
-          {...register("name", {
-            required: "This field is required",
-            minLength: {
-              value: 3,
-              message: "3 character minimum",
-            },
-            maxLength: {
-              value: 30,
-              message: "30 character maximum",
-            },
-          })}
+          {...register("name")}
         />
         {errors.name && (
           <span className={styles.FormFieldError}>{errors.name.message}</span>
@@ -39,12 +29,7 @@ export default function TodoFormFields({
               placeholder="Description"
               defaultValue={todo.description}
               rows={3}
-              {...register("description", {
-                maxLength: {
-                  value: 200,
-                  message: "200 character maximum",
-                },
-              })}
+              {...register("description")}
             />
             {errors.description && (
               <span className={styles.FormFieldError}>
@@ -60,12 +45,13 @@ export default function TodoFormFields({
                 id="deadline"
                 defaultValue={todo.deadline}
                 // to make this work for edit form check the ID
-                {...register("deadline", {
+                {...register("deadline")}
+                /**, {
                   min: !todo.id && {
                     value: new Date().toISOString().split("T")[0],
                     message: "Deadline can't be in the past",
                   },
-                })}
+                } */
               />
               {errors.deadline && (
                 <span className={styles.FormFieldError}>
@@ -79,10 +65,7 @@ export default function TodoFormFields({
               <select
                 defaultValue={todo.priority ?? PRIORITY_DEFAULT}
                 id="priority"
-                {...register("priority", {
-                  validate: (value) =>
-                    Object.keys(PRIORITIES).includes(value) || "unvalide value",
-                })}
+                {...register("priority")}
               >
                 {Object.entries(PRIORITIES).map(([key, { label }]) => (
                   <option key={key + Math.random()} value={key}>

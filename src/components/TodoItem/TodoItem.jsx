@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
+import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./TodoItem.module.css"; // Assuming you have a CSS file for styling
 import ItemView from "./ItemView";
 import EditView from "./EditView";
+import { getTodoSchema } from "../../schemas/todoSchema";
 // import { PRIORITY_DEFAULT } from "../../constants/data";
 
 const TodoItem = ({ todo, onUpdate, onDelete }) => {
-  const { register, handleSubmit } = useForm({ defaultValues: todo });
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(getTodoSchema()),
+    defaultValues: todo,
+  });
   const [isEditing, setIsEditing] = useState(false);
 
   const handleIsEditing = () => setIsEditing(true);
