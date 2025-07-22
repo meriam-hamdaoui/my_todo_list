@@ -23,10 +23,10 @@ export default function ItemView({ todo, onChangeBox, onClickEdit, onDelete }) {
             <span
               className={styles.Priority}
               style={{
-                color: PRIORITIES[todo.priority].color,
+                color: PRIORITIES[todo.priority]?.color,
               }}
             >
-              {PRIORITIES[todo.priority].label}
+              {PRIORITIES[todo.priority]?.label}
             </span>
           )}
         </div>
@@ -38,7 +38,7 @@ export default function ItemView({ todo, onChangeBox, onClickEdit, onDelete }) {
           </button>
         </div>
         <div className={styles.Wrapper}>
-          <button className={styles.Btn} onClick={() => onDelete(todo.id)}>
+          <button className={styles.Btn} onClick={() => onDelete(todo?.id)}>
             <MdOutlineDelete className={styles.Icon} />
           </button>
         </div>

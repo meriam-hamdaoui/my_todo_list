@@ -30,7 +30,7 @@ export default function TodoFilters({ onFilter }) {
           onChange={(e) => setCompleted(e.target.value)}
         >
           {Object.entries(COMPLETED_FILTERS).map(([key, { label }]) => (
-            <option key={key} value={key}>
+            <option key={key + Math.random()} value={key}>
               {label}
             </option>
           ))}
@@ -43,7 +43,7 @@ export default function TodoFilters({ onFilter }) {
           onChange={(e) => setPriority(e.target.value)}
         >
           {Object.entries(PRIORITY_FILTERS).map(([key, { label }]) => (
-            <option key={key} value={key}>
+            <option key={key + Math.random()} value={key}>
               {label}
             </option>
           ))}

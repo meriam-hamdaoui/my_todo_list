@@ -43,7 +43,7 @@ export default function TodoFormFields({ showField = true, todo = {} }) {
                 name="priority"
               >
                 {Object.entries(PRIORITIES).map(([key, { label }]) => (
-                  <option key={key} value={key}>
+                  <option key={key + Math.random()} value={key}>
                     {label}
                   </option>
                 ))}

@@ -18,7 +18,7 @@ const TodoForm = ({ onCreate }) => {
       priority: elements.priority?.value ?? "",
       completed: false,
     });
-    setShowField(!showField);
+    setShowField(false);
 
     event.target.reset();
   };

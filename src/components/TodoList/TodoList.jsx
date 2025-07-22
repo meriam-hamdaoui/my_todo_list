@@ -9,7 +9,7 @@ const TodoList = ({ todoList, onUpdate, onDelete }) => {
       <ul className={styles.TodoList}>
         {todoList.map((todo) => (
           <TodoItem
-            key={todo.id}
+            key={todo.id + Math.random()}
             todo={todo}
             onUpdate={onUpdate}
             onDelete={onDelete}
