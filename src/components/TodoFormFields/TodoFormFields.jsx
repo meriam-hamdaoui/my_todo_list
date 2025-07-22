@@ -35,7 +35,7 @@ export default function TodoFormFields({ showField = true, todo = {} }) {
                 id="deadline"
                 name="deadline"
                 defaultValue={todo.deadline}
-                // max={new Date().toISOString().split("T")[0]}
+                min={new Date().toISOString().split("T")[0]}
               />
             </div>
 
