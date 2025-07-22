@@ -46,12 +46,6 @@ export default function TodoFormFields({
                 defaultValue={todo.deadline}
                 // to make this work for edit form check the ID
                 {...register("deadline")}
-                /**, {
-                  min: !todo.id && {
-                    value: new Date().toISOString().split("T")[0],
-                    message: "Deadline can't be in the past",
-                  },
-                } */
               />
               {errors.deadline && (
                 <span className={styles.FormFieldError}>
