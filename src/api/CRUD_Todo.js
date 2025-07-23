@@ -1,10 +1,16 @@
-export const getTodos = (set) =>
-  fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos`, {
+export const getTodos = (set, filters) => {
+  const searchParams = new URLSearchParams({ ...filters }).toString();
+
+  fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos?${searchParams}`, {
     method: "GET",
     headers: { "content-type": "application/json" },
   })
-    .then((response) => !!response.ok && response.json())
+    .then((response) => {
+      if (response.ok) return response.json();
+      if (response.status === 404) return [];
+    })
     .then(set);
+};
 
 export const createTodos = (newTodo, fetchData) =>
   fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos`, {

@@ -15,7 +15,7 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [filters, setFilters] = useState({});
 
-  const fetchTodo = () => getTodos(setTodos);
+  const fetchTodo = () => getTodos(setTodos, filters);
 
   const handleCreate = (newTodo) => createTodos(newTodo, fetchTodo);
 
@@ -23,18 +23,18 @@ function App() {
 
   const handleDelete = (id) => deleteTodo(id, fetchTodo);
 
-  const handleFilters = (todo) => {
-    const { completed, priority } = filters;
+  // const handleFilters = (todo) => {
+  //   const { completed, priority } = filters;
 
-    return (
-      (completed === "" || todo.completed === completed) &&
-      (priority === "" || todo.priority === priority)
-    );
-  };
+  //   return (
+  //     (completed === "" || todo.completed === completed) &&
+  //     (priority === "" || todo.priority === priority)
+  //   );
+  // };
 
   useEffect(() => {
     fetchTodo();
-  }, []);
+  }, [filters]);
 
   return (
     <div className={styles.App}>
@@ -47,7 +47,7 @@ function App() {
         <TodoForm onCreate={handleCreate} />
         <TodoFilters onFilter={setFilters} />
         <TodoList
-          todoList={todos.filter(handleFilters)}
+          todoList={todos}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
         />
