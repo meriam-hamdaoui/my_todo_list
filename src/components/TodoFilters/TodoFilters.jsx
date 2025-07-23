@@ -16,7 +16,7 @@ export default function TodoFilters({ onFilter }) {
     };
 
     onFilter(filters);
-  }, [completed, priority]);
+  }, [onFilter, completed, priority]);
 
   return (
     <section>

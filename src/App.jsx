@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import TodoForm from "./components/TodoForm/TodoForm";
 import TodoList from "./components/TodoList/TodoList.jsx";
 import TodoFilters from "./components/TodoFilters/TodoFilters.jsx";
@@ -15,7 +15,9 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [filters, setFilters] = useState({});
 
-  const fetchTodo = () => getTodos(setTodos, filters);
+  const fetchTodo = useCallback(() => {
+    getTodos(setTodos, filters);
+  }, [filters]);
 
   const handleCreate = (newTodo) => createTodos(newTodo, fetchTodo);
 
@@ -34,7 +36,7 @@ function App() {
 
   useEffect(() => {
     fetchTodo();
-  }, [filters]);
+  }, [fetchTodo, filters]);
 
   return (
     <div className={styles.App}>
