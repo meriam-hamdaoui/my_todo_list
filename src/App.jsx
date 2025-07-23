@@ -4,18 +4,15 @@ import TodoList from "./components/TodoList/TodoList.jsx";
 import TodoFilters from "./components/TodoFilters/TodoFilters.jsx";
 import styles from "./App.module.css";
 // import { TODOS_DEFAULT } from "./constants/data.js";
-import { getTodos } from "./api/CRUD_Todo.js";
+import { getTodos, createTodos } from "./api/CRUD_Todo.js";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [filters, setFilters] = useState({});
 
-  const handleCreate = (newTodo) => {
-    setTodos((prevTodos) => [
-      ...prevTodos,
-      { id: `${prevTodos.length + 1}`, ...newTodo },
-    ]);
-  };
+  const fetchTodo = () => getTodos(setTodos);
+
+  const handleCreate = (newTodo) => createTodos(newTodo, fetchTodo);
 
   const handleUpdate = (id, newTodos) => {
     setTodos((prevTodos) =>
@@ -38,7 +35,7 @@ function App() {
   };
 
   useEffect(() => {
-    getTodos(setTodos);
+    fetchTodo();
   }, []);
 
   return (
