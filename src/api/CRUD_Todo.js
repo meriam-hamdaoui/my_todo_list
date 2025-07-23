@@ -1,25 +1,32 @@
-export const getTodos = (fonction) => {
+export const getTodos = (set) =>
   fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos`, {
     method: "GET",
     headers: { "content-type": "application/json" },
   })
     .then((response) => !!response.ok && response.json())
-    .then(fonction);
-};
+    .then(set);
 
-export const createTodos = (newTodo, fonction) => {
+export const createTodos = (newTodo, fetchData) =>
   fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(newTodo),
   })
     .then((response) => !!response.ok && response.json())
-    .then(fonction);
-};
+    .then(fetchData);
 
-export const deleteTodo = (id, fonction) =>
+export const deleteTodo = (id, fetchData) =>
   fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos/${id}`, {
     method: "DELETE",
   })
     .then((response) => !!response.ok && response.json())
-    .then(fonction);
+    .then(fetchData);
+
+export const updateTodo = (id, editTodo, fetchData) =>
+  fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos/${id}`, {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(editTodo),
+  })
+    .then((response) => !!response.ok && response.json())
+    .then(fetchData);
