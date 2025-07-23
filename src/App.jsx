@@ -4,7 +4,7 @@ import TodoList from "./components/TodoList/TodoList.jsx";
 import TodoFilters from "./components/TodoFilters/TodoFilters.jsx";
 import styles from "./App.module.css";
 // import { TODOS_DEFAULT } from "./constants/data.js";
-import { getTodos, createTodos } from "./api/CRUD_Todo.js";
+import { getTodos, createTodos, deleteTodo } from "./api/CRUD_Todo.js";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -22,8 +22,7 @@ function App() {
     );
   };
 
-  const handleDelete = (id) =>
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
+  const handleDelete = (id) => deleteTodo(id, fetchTodo);
 
   const handleFilters = (todo) => {
     const { completed, priority } = filters;

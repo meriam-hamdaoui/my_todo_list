@@ -16,3 +16,10 @@ export const createTodos = (newTodo, fonction) => {
     .then((response) => !!response.ok && response.json())
     .then(fonction);
 };
+
+export const deleteTodo = (id, fonction) =>
+  fetch(`${import.meta.env.VITE_MOCKAPI_BASE_URL}/todos/${id}`, {
+    method: "DELETE",
+  })
+    .then((response) => !!response.ok && response.json())
+    .then(fonction);
