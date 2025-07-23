@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoForm from "./components/TodoForm/TodoForm";
 import TodoList from "./components/TodoList/TodoList.jsx";
 import TodoFilters from "./components/TodoFilters/TodoFilters.jsx";
 import styles from "./App.module.css";
-import { TODOS_DEFAULT } from "./constants/data.js";
+// import { TODOS_DEFAULT } from "./constants/data.js";
+import { getTodos } from "./api/CRUD_Todo.js";
 
 function App() {
-  const [todos, setTodos] = useState(TODOS_DEFAULT);
+  const [todos, setTodos] = useState([]);
   const [filters, setFilters] = useState({});
 
   const handleCreate = (newTodo) => {
@@ -35,6 +36,10 @@ function App() {
       (priority === "" || todo.priority === priority)
     );
   };
+
+  useEffect(() => {
+    getTodos(setTodos);
+  }, []);
 
   return (
     <div className={styles.App}>
