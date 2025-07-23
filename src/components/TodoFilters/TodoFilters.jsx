@@ -26,7 +26,7 @@ export default function TodoFilters({ onFilter }) {
 
         <select
           id="completed"
-          defaultValue="all"
+          value={completed}
           onChange={(e) => setCompleted(e.target.value)}
         >
           {Object.entries(COMPLETED_FILTERS).map(([key, { label }]) => (
@@ -39,7 +39,7 @@ export default function TodoFilters({ onFilter }) {
         <label htmlFor="priority">Priority</label>
         <select
           id="priority"
-          defaultValue="all"
+          value={priority}
           onChange={(e) => setPriority(e.target.value)}
         >
           {Object.entries(PRIORITY_FILTERS).map(([key, { label }]) => (
