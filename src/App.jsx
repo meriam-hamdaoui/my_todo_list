@@ -19,13 +19,18 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [filters, setFilters] = useState({});
 
-  const fetchTodo = useCallback(() => {
+  const fetchTodo = useCallback(async () => {
     /**  my way of calling api's
      * getTodos(setTodos, filters);
      */
     // instructor api's
 
-    axiosAPI.todos.getAll(filters).then(setTodos);
+    try {
+      const data = await axiosAPI.todos.getAll(filters);
+      setTodos(data);
+    } catch (error) {
+      !!error && console.error("Failed to fetch data. Please try again ");
+    }
   }, [filters]);
 
   /** my CRUD's
@@ -34,13 +39,32 @@ function App() {
    const handleDelete = (id) => deleteTodo(id, fetchTodo);
    */
 
-  const handleCreate = (newTodo) =>
-    axiosAPI.todos.create(newTodo).then(fetchTodo);
+  const handleCreate = async (newTodo) => {
+    try {
+      await axiosAPI.todos.create(newTodo);
+      await fetchTodo();
+    } catch (error) {
+      !!error && console.error("Failed to create data. Please try again ");
+    }
+  };
 
-  const handleUpdate = (id, editTodo) =>
-    axiosAPI.todos.update(id, editTodo).then(fetchTodo);
+  const handleUpdate = async (id, editTodo) => {
+    try {
+      await axiosAPI.todos.update(id, editTodo);
+      await fetchTodo();
+    } catch (error) {
+      !!error && console.error("Failed to update data. Please try again ");
+    }
+  };
 
-  const handleDelete = (id) => axiosAPI.todos.delete(id).then(fetchTodo);
+  const handleDelete = async (id) => {
+    try {
+      await axiosAPI.todos.delete(id);
+      await fetchTodo();
+    } catch (error) {
+      !!error && console.error("Failed to delete data. Please try again ");
+    }
+  };
 
   /**this is the used filter before the mockAPI
    const handleFilters = (todo) => {
