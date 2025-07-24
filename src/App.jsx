@@ -11,7 +11,9 @@ import styles from "./App.module.css";
 //   updateTodo,
 // } from "./api/CRUD_Todo.js";
 
-import { apiTodos } from "./api/API.js";
+// import { apiTodos } from "./api/API.js";
+
+import { axiosAPI } from "./api/AXIOS.js";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -23,7 +25,7 @@ function App() {
      */
     // instructor api's
 
-    apiTodos.todos.getAll(filters).then(setTodos);
+    axiosAPI.todos.getAll(filters).then(setTodos);
   }, [filters]);
 
   /** my CRUD's
@@ -33,12 +35,12 @@ function App() {
    */
 
   const handleCreate = (newTodo) =>
-    apiTodos.todos.create(newTodo).then(fetchTodo);
+    axiosAPI.todos.create(newTodo).then(fetchTodo);
 
   const handleUpdate = (id, editTodo) =>
-    apiTodos.todos.update(id, editTodo).then(fetchTodo);
+    axiosAPI.todos.update(id, editTodo).then(fetchTodo);
 
-  const handleDelete = (id) => apiTodos.todos.delete(id).then(fetchTodo);
+  const handleDelete = (id) => axiosAPI.todos.delete(id).then(fetchTodo);
 
   /**this is the used filter before the mockAPI
    const handleFilters = (todo) => {

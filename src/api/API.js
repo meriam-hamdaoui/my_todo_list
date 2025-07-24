@@ -10,6 +10,7 @@ const headerConfig = { "content-type": "application/json" };
 
 export const apiTodos = {
   todos: {
+    // params is an empty object so the AP doesn't crash without filters
     getAll(params = {}) {
       const searchParams = new URLSearchParams(params).toString();
 
