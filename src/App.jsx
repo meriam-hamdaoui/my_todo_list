@@ -5,6 +5,7 @@ import styles from "./App.module.css";
 
 import { useTodoHook } from "./hooks/todoHook.js";
 import Alert from "./components/Alert/Alert.jsx";
+import Loader from "./components/Loader/Loader.jsx";
 
 function App() {
   const todos = useTodoHook();
@@ -17,6 +18,7 @@ function App() {
       </header>
 
       <div className={styles.AppContainer}>
+        {todos.isLoading && <Loader />}
         <TodoForm onCreate={todos.create} />
         {!!todos.error.message && (
           <Alert onClear={todos.error.clear}>{todos.error.message}</Alert>
