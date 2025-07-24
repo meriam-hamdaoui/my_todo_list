@@ -4,35 +4,51 @@ import TodoList from "./components/TodoList/TodoList.jsx";
 import TodoFilters from "./components/TodoFilters/TodoFilters.jsx";
 import styles from "./App.module.css";
 // import { TODOS_DEFAULT } from "./constants/data.js";
-import {
-  getTodos,
-  createTodos,
-  deleteTodo,
-  updateTodo,
-} from "./api/CRUD_Todo.js";
+// import {
+//   getTodos,
+//   createTodos,
+//   deleteTodo,
+//   updateTodo,
+// } from "./api/CRUD_Todo.js";
+
+import { apiTodos } from "./api/API.js";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [filters, setFilters] = useState({});
 
   const fetchTodo = useCallback(() => {
-    getTodos(setTodos, filters);
+    /**  my way of calling api's
+     * getTodos(setTodos, filters);
+     */
+    // instructor api's
+
+    apiTodos.todos.getAll(filters).then(setTodos);
   }, [filters]);
 
-  const handleCreate = (newTodo) => createTodos(newTodo, fetchTodo);
+  /** my CRUD's
+   *const handleCreate = (newTodo) => createTodos(newTodo, fetchTodo);
+   const handleUpdate = (id, editTodo) => updateTodo(id, editTodo, fetchTodo);
+   const handleDelete = (id) => deleteTodo(id, fetchTodo);
+   */
 
-  const handleUpdate = (id, editTodo) => updateTodo(id, editTodo, fetchTodo);
+  const handleCreate = (newTodo) =>
+    apiTodos.todos.create(newTodo).then(fetchTodo);
 
-  const handleDelete = (id) => deleteTodo(id, fetchTodo);
+  const handleUpdate = (id, editTodo) =>
+    apiTodos.todos.update(id, editTodo).then(fetchTodo);
 
-  // const handleFilters = (todo) => {
-  //   const { completed, priority } = filters;
+  const handleDelete = (id) => apiTodos.todos.delete(id).then(fetchTodo);
 
-  //   return (
-  //     (completed === "" || todo.completed === completed) &&
-  //     (priority === "" || todo.priority === priority)
-  //   );
-  // };
+  /**this is the used filter before the mockAPI
+   const handleFilters = (todo) => {
+     const { completed, priority } = filters;
+
+     return (
+       (completed === "" || todo.completed === completed) &&
+       (priority === "" || todo.priority === priority)
+     );
+   };*/
 
   useEffect(() => {
     fetchTodo();
